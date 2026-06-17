@@ -16,7 +16,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'mvn clean package Dmaven.repo.local=/var/jenkins_home/.m2/repository'
+                sh 'mvn clean package -Dmaven.repo.local=/var/jenkins_home/.m2/repository'
                 sh 'pwd'
 
                 sh '''
