@@ -10,4 +10,9 @@ public class HomeController {
     public String helloController() {
         return "Hola Ruben y hola mundo, primer controller";
     }
+
+    @GetMapping("main")
+    public String mainController() {
+        return "main controller";
+    }
 }
