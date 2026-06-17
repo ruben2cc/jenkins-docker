@@ -13,6 +13,7 @@ pipeline {
                 docker {
                     image 'maven:3.9.9-eclipse-temurin-17'
                     args '-v $HOME/.m2:/root/.m2'
+                    reuseNode true
                 }
             }
             steps {
@@ -29,6 +30,7 @@ pipeline {
         stage('Ejecutar container') {
             steps {
                 sh '''
+                    docker rm -f site || true
                     docker run -d --name site -p 8180:8080 site-img
                 '''
             }
