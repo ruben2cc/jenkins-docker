@@ -12,7 +12,7 @@ pipeline {
             agent {
                 docker {
                     image 'maven:3.9.9-eclipse-temurin-17'
-                    args '-v /var/jenkins_home/.m2:/var/jenkins_home/.m2'
+                    args '-v /var/jenkins_home/.m2:/home/ubuntu/.m2'             
                     reuseNode true
                 }
             }
@@ -35,8 +35,6 @@ pipeline {
 
                         echo "Contenido de $HOME/.m2:"
                         ls -la $HOME/.m2 || true
-
-                        mvn clean package
                     '''
             }
         }
