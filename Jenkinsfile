@@ -1,0 +1,37 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Pruebas y Empaquetado')  {
+            agent {
+                docker {
+                    image: 'maven:3.9.9-eclipse-temurin-17'
+                    args: '-v $HOME/.m2:/root/.m2'
+                }
+            }
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+
+        stage('Crear imagen docker') {
+            steps {
+                sh 'docker build -t site-img .'
+            }
+        }
+
+        stage('Ejecutar container') {
+            steps {
+                sh '''
+                    docker run -d --name site -p 8180:8080 site-img
+                '''
+            }
+        }
+    }
+}
