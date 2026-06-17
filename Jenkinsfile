@@ -12,19 +12,21 @@ pipeline {
             agent {
                 docker {
                     image 'maven:3.9.9-eclipse-temurin-17'
-                    args '-v $HOME/.m2:$HOME/.m2'
+                    args '-v /var/jenkins_home/.m2:/var/jenkins_home/.m2'
                     reuseNode true
                 }
             }
             steps {
                 sh 'mvn clean package'
                 sh 'pwd'
+                echo $HOME
             }
         }
 
         stage('Crear imagen docker') {
             steps {
                 sh 'docker build -t site-img .'
+                echo $HOME
             }
         }
 
