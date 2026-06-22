@@ -11,8 +11,8 @@ public class HomeController {
         return "Hola Ruben y hola mundo, primer controller";
     }
 
-    @GetMapping("main")
+    @GetMapping("host")
     public String mainController() {
-        return "main controller";
+        return "El pod es: " + System.getenv("HOSTNAME");
     }
 }

@@ -18,23 +18,6 @@ pipeline {
             steps {
                 sh 'mvn clean package -Dmaven.repo.local=/var/jenkins_home/.m2/repository'
                 sh 'pwd'
-
-                sh '''
-                        echo "Usuario:"
-                        id
-
-                        echo "HOME:"
-                        echo $HOME
-
-                        echo "Repositorio local Maven:"
-                        mvn help:evaluate -Dexpression=settings.localRepository -q -DforceStdout
-
-                        echo "Contenido de /root/.m2:"
-                        ls -la /root/.m2 || true
-
-                        echo "Contenido de $HOME/.m2:"
-                        ls -la $HOME/.m2 || true
-                    '''
             }
         }
 
