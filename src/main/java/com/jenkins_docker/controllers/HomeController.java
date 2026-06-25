@@ -13,6 +13,6 @@ public class HomeController {
 
     @GetMapping("host")
     public String mainController() {
-        return "El pod es: " + System.getenv("HOSTNAME");
+        return "El pod es: " + System.getenv("HOSTNAME") + " container ID";
     }
 }
